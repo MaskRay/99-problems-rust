@@ -1,19 +1,15 @@
+fn gcd(mut a: usize, mut b: usize) -> usize {
+  let mut t;
+  while b != 0 {
+    t = a%b;
+    a = b;
+    b = t;
+  }
+  a
+}
+
 fn phi(mut n: usize) -> usize {
-  let mut r = n;
-  let mut i = 2;
-  while i*i <= n {
-    if n%i == 0 {
-      while n % i == 0 {
-        n /= i
-      }
-      r = r/i*(i-1);
-    }
-    i += 1;
-  }
-  if n > 1 {
-    r = r/n*(n-1);
-  }
-  r
+  range(0, n).filter(|&i| gcd(i, n) == 1).count()
 }
 
 fn main() {
